@@ -1,0 +1,28 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_author_table_1
+      author: aleksandrPob
+      changes:
+        - createTable:
+            tableName: AUTHOR
+            columns:
+              - column:
+                  name: ID
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: PK_AUTHOR
+              - column:
+                  name: FIRST_NAME
+                  type: varchar(100)
+                  constraints:
+                    unique: false
+                    nullable: true
+              - column:
+                  name: LAST_NAME
+                  type: varchar(100)
+                  constraints:
+                    unique: false
+                    nullable: false

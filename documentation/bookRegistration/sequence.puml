@@ -1,0 +1,31 @@
+@startuml
+
+actor User
+
+User -> BookController: registerBook()
+BookController -> BookService: registerBook()
+
+== Getting existing or creating new AuthorDto ==
+BookService -> AuthorService: getAuthorByName()
+note right: if not found, then creating new
+BookService <-- AuthorService: AuthorDto
+destroy AuthorService
+
+== Getting existing or creating new GenreDto ==
+loop for each genre in genres from RequestBody
+BookService -> GenreService: getGenreByName()
+note right: if not found, then creating new
+BookService <-- GenreService: GenreDto
+end
+destroy GenreService
+
+== Creating Book and inserting it to the DB ==
+BookService -> BookConverter: toDto(Book)
+BookService <-- BookConverter: BookDto
+
+BookService -> BookDto: setAuthor()
+BookService -> BookDto: setGenres()
+
+BookService -> BookRepository: save(BookDto)
+
+@enduml

@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changeset/create-book-audit.yml
+  - include:
+      file: db/changelog/changeset/create-book-audit-genres.yml

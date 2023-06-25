@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:./db/datamanagerdb;MODE=PostgreSQL
+    driverClassName: org.h2.Driver
+  kafka:
+    bootstrap-servers: localhost:19092
+
+  security:
+      oauth2:
+        resourceserver:
+          jwt:
+            jwk-set-uri: http://localhost:9030/realms/library-realm/protocol/openid-connect/certs

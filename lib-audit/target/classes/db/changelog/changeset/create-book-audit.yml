@@ -1,0 +1,91 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_book_audit_table
+      author: valentynl
+      changes:
+        - createTable:
+            tableName: BOOK_AUDIT
+            columns:
+              - column:
+                  name: ID
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: PK_BOOK_AUDIT
+              - column:
+                  name: BOOK_ID
+                  type: BIGINT
+                  constraints:
+                    unique: false
+                    nullable: false
+              - column:
+                  name: NAME
+                  type: varchar(100)
+                  constraints:
+                    unique: false
+                    nullable: true
+              - column:
+                  name: LANGUAGE
+                  type: varchar(100)
+                  constraints:
+                    unique: false
+                    nullable: true
+              - column:
+                  name: YEAR_OF_PUBLISHING
+                  type: INT
+                  constraints:
+                    unique: false
+                    nullable: true
+              - column:
+                  name: VERSION
+                  type: BIGINT
+                  constraints:
+                    unique: false
+                    nullable: false
+              - column:
+                  name: CHANGE_DATE
+                  type: TIMESTAMP
+                  constraints:
+                    unique: false
+                    nullable: false
+              - column:
+                  name: CHANGED_BY
+                  type: varchar(100)
+                  constraints:
+                    unique: false
+                    nullable: false
+              - column:
+                  name: AUTHOR_ID
+                  type: BIGINT
+                  constraints:
+                    unique: false
+                    nullable: true
+              - column:
+                  name: AUTHOR_FIRST_NAME
+                  type: varchar(100)
+                  constraints:
+                    unique: false
+                    nullable: true
+              - column:
+                  name: AUTHOR_SECOND_NAME
+                  type: varchar(100)
+                  constraints:
+                    unique: false
+                    nullable: true
+              - column:
+                  name: AUTHOR_NATIONALITY
+                  type: varchar(100)
+                  constraints:
+                    unique: false
+                    nullable: true
+
+  - changeSet:
+      id: add_unique_constraint_bookid_version
+      author: valentynl
+      changes:
+        - addUniqueConstraint:
+            tableName: BOOK_AUDIT
+            columnNames: BOOK_ID, VERSION
+            constraintName: unique_constraint_bookid_version

@@ -1,0 +1,53 @@
+@startuml
+
+entity Author {
+    * id: bigint <<generated>>
+    --
+    * firstName: varchar(100)
+    * lastName: varchar(100)
+    --
+    nationalityId: bigint <<FK>>
+}
+
+entity Book {
+    * id: bigint <<generated>>
+    --
+    * name: varchar(100)
+    * language: varchar(100)
+    * yearOfPublishing: integer
+    --
+    authorId: bigint <<FK>>
+}
+
+entity Genre {
+    * id: bigint <<generated>>
+    --
+    * genre: varchar(100)
+}
+
+entity Nationality {
+    * id: bigint <<generated>>
+    --
+    * nationality: varchar(50)
+}
+
+entity BooksGenres {
+    * bookId: bigint <<FK>>
+    * genreId: bigint <<FK>>
+}
+
+entity AuthorsGenres {
+    * authorId: bigint <<FK>>
+    * genreId: bigint <<FK>>
+}
+
+Author ||--|{ Book
+Author }|--o| Nationality
+
+Book |o--|{ BooksGenres
+Genre |o--|{ BooksGenres
+
+Author |o--|{ AuthorsGenres
+Genre |o--|{ AuthorsGenres
+
+@end

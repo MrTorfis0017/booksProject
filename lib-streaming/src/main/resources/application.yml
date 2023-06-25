@@ -1,0 +1,11 @@
+server:
+  port: 8100
+
+spring:
+  kafka:
+    streams:
+      bootstrap-servers: "localhost:29092"
+      topics:
+        input-library: DM_CHANGES
+        output-elasticsearch: ES_TOPIC
+        output-audit: DM_AUDIT

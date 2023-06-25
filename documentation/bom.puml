@@ -1,0 +1,32 @@
+@startuml
+
+entity Book {
+    id: long
+    name: string
+    language: string
+    yearOfPublishing: int
+}
+
+entity Author {
+    id: long
+    firstName: string
+    lastName: string
+    nationality: string
+}
+
+enum Genre {
+    SCIENCE_FICTION
+    FANTASY
+    HORROR
+    TECHNICAL_WRITING
+    EROTIC_FICTION
+    WESTERN
+    OTHER
+}
+
+Book "1..N" -o "1" Author: book
+Book "1" o- "1..N" Genre: genre
+Author "1" o- "1..N" Genre: genre
+Author "1..1" -o "1" Book: author
+
+@enduml

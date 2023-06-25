@@ -1,0 +1,43 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_book_table_1
+      author: aleksandrPob
+      changes:
+        - createTable:
+            tableName: BOOK
+            columns:
+              - column:
+                  name: ID
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: PK_BOOK
+              - column:
+                  name: NAME
+                  type: varchar(100)
+                  constraints:
+                    unique: false
+                    nullable: true
+              - column:
+                  name: LANGUAGE
+                  type: varchar(100)
+                  constraints:
+                    unique: false
+                    nullable: false
+              - column:
+                  name: YEAR_OF_PUBLISHING
+                  type: INT
+                  constraints:
+                    unique: false
+                    nullable: false
+              - column:
+                  name: AUTHOR_ID
+                  type: BIGINT
+                  constraints:
+                    unique: false
+                    nullable: false
+                    foreignKeyName: FK_BOOK_AUTHOR
+                    references: AUTHOR(ID)
+                    deleteCascade: true

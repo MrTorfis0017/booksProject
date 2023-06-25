@@ -1,0 +1,7 @@
+server:
+  port: 8090
+
+kafka:
+  bootstrap-servers: "localhost:29092"
+  topics:
+    elastic: ES_TOPIC

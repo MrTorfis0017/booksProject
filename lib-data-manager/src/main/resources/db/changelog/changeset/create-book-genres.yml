@@ -1,0 +1,34 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_books_genres_table
+      author: aleksandrPob
+      changes:
+        - createTable:
+            tableName: BOOKS_GENRES
+            columns:
+              - column:
+                  name: ID
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: PK_BOOKS_GENRES
+              - column:
+                  name: BOOK_ID
+                  type: BIGINT
+                  constraints:
+                    unique: false
+                    nullable: false
+                    foreignKeyName: FK_BOOKS_GENRES_BOOK
+                    references: BOOK(ID)
+                    deleteCascade: true
+              - column:
+                  name: GENRE_ID
+                  type: BIGINT
+                  constraints:
+                    unique: false
+                    nullable: false
+                    foreignKeyName: FK_BOOKS_GENRES_GENRE
+                    references: GENRE(ID)
+                    deleteCascade: true

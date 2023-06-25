@@ -1,0 +1,27 @@
+server:
+  port: 5080
+spring:
+  datasource:
+    username: audit
+    password: psw
+    url: jdbc:postgresql://localhost:7432/audit
+    driverClassName: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/changelog-audit-master.yml
+
+  kafka:
+    bootstrap-servers: "localhost:29092"
+    topics:
+      audit: DM_AUDIT
